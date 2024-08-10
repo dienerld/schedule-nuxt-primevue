@@ -2,6 +2,7 @@
   "eslint.useFlatConfig": false,
   "css.styleSheets": [
     "./app/assets/css/variables.css",
-    "./app/assets/css/tailwind.css"
+    "./app/assets/css/tailwind.css",
+    "node_modules/primeicons/primeicons.css"
   ],
 }

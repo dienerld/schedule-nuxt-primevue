@@ -18,6 +18,7 @@ module.exports = {
     'import/order': 'off',
     'space-before-function-paren': ['error', 'never'],
     'vue/multi-word-component-names': 'off',
+    'func-call-spacing': 'off',
     'tailwindcss/no-custom-classname': ['warn', {
       cssFiles: [
         'node_modules/primeicons/primeicons.css',
