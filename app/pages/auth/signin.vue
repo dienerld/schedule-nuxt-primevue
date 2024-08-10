@@ -2,7 +2,7 @@
 import Login from '~/modules/auth/screens/Login/Login.vue'
 
 definePageMeta({
-  layout: 'empty'
+  layout: 'default'
 })
 </script>
 

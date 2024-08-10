@@ -1,10 +1,10 @@
 <script setup lang="ts">
-type SigninData = {
-  phone: string
+export type SigninData = {
+  number: number | undefined
   password: string
 }
 const emit = defineEmits<{
-  (e: 'wants-to-signin', data: SigninData): void
+  (e: 'wants-to-signin-with-phone', data: SigninData): void
 }>()
 
 const props = defineProps<{
@@ -12,18 +12,18 @@ const props = defineProps<{
 }>()
 
 const signinData = reactive<SigninData>({
-  phone: '',
+  number: undefined,
   password: ''
 })
 
 const handleSignin = () => {
-  emit('wants-to-signin', signinData)
+  emit('wants-to-signin-with-phone', signinData)
 }
 
 </script>
 
 <template>
-  <div class="relative flex h-full flex-col items-center justify-center gap-2 rounded bg-surface-50 p-6">
+  <div class="flex flex-col items-center justify-center gap-2 rounded bg-surface-50 p-6">
     <section class="flex flex-col items-center gap-4 rounded-lg border border-surface-200 p-6 shadow-lg">
       <header class="flex flex-col items-center gap-2">
         <Logo class="text-3xl" />
@@ -33,15 +33,18 @@ const handleSignin = () => {
       </header>
 
       <form class="flex flex-col gap-2" autocomplete="on" @submit.prevent="handleSignin">
-        <div class="flex-auto">
-          <label for="phone" class="mb-1 block font-bold">Phone</label>
-          <InputMask id="phone" v-model="signinData.phone" mask="(99) 99999-9999" placeholder="(99) 91234-5678" fluid />
-        </div>
-
-        <div class="flex-auto">
-          <label for="password" class="mb-1 block font-bold">Password</label>
-          <InputText id="password" v-model="signinData.password" type="password" placeholder="Password" fluid />
-        </div>
+        <InputGroup>
+          <InputGroupAddon>
+            <i class="pi pi-home" />
+          </InputGroupAddon>
+          <InputNumber v-model="signinData.number" allow-empty placeholder="Apartamento" />
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon>
+            <i class="pi pi-eye" />
+          </InputGroupAddon>
+          <InputText v-model="signinData.password" placeholder="Senha" />
+        </InputGroup>
 
         <Button label="Entrar" type="submit" :loading="props.loading" />
       </form>

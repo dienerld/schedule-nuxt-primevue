@@ -1,18 +1,46 @@
 <script setup lang="ts">
-import PhoneLogin from '~/modules/auth/components/PhoneLogin/PhoneLogin.vue'
-const loading = ref(false)
+import Form, { type SigninData } from '~/modules/auth/components/Form/Form.vue'
+import Header from '~/modules/auth/components/Header/Header.vue'
 
-const handleSignin = () => {
+const router = useRouter()
+const { fetch } = useUserSession()
+const loading = ref(false)
+const hasError = ref(false)
+
+const handlePhoneLogin = async(data: SigninData) => {
   loading.value = true
-  setTimeout(() => {
-    loading.value = false
-  }, 2000)
+  await $fetch('/api/auth/signin', {
+    method: 'POST',
+    body: data,
+    onResponse: async() => {
+      loading.value = false
+      await fetch()
+      router.push('/app')
+    },
+    onResponseError: () => {
+      loading.value = false
+      hasError.value = true
+    }
+  })
 }
 
+watch(hasError, () => {
+  if (hasError.value) {
+    setTimeout(() => {
+      hasError.value = false
+    }, 3000)
+  }
+})
 </script>
 
 <template>
-  <section class="flex size-full flex-col items-center justify-center gap-5 bg-surface-50">
-    <PhoneLogin :loading @wants-to-signin="handleSignin" />
+  <Header />
+  <section class="flex size-full flex-col items-center justify-center bg-surface-50">
+    <div class="min-h-12">
+      <Message v-if="hasError" severity="error">
+        Usuário ou senha inválidos
+      </Message>
+    </div>
+    <Form :loading @wants-to-signin-with-phone="handlePhoneLogin" />
   </section>
 </template>

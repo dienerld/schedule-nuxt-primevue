@@ -2,7 +2,10 @@
 import Header from '~/modules/landing-page/components/Header/Header.vue'
 import Hero from '~/modules/landing-page/components/Hero/Hero.vue'
 
-const handleLogin = () => { }
+const router = useRouter()
+const handleLogin = () => {
+  router.push('/auth/signin')
+}
 </script>
 
 <template>
@@ -11,7 +14,7 @@ const handleLogin = () => { }
       <Header @wants-to-login="handleLogin" />
     </template>
     <template #content>
-      <Hero />
+      <Hero @wants-to-login="handleLogin" />
     </template>
   </MainContent>
 </template>
