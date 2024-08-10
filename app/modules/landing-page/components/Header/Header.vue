@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+const emit = defineEmits<{
+  (e: 'wants-to-login'): void
+}>()
 </script>
 
 <template>
@@ -14,6 +16,7 @@
             label="Entrar"
             icon-pos="right"
             icon="pi pi-sign-in"
+            @click="() => emit('wants-to-login')"
           />
         </div>
       </div>
