@@ -1,12 +1,23 @@
 import path from 'path';
 
 export default defineNuxtConfig({
-  modules: ['@primevue/nuxt-module', '@nuxtjs/tailwindcss', '@nuxt/fonts'],
+  modules: [
+    '@primevue/nuxt-module',
+    '@nuxtjs/tailwindcss',
+    '@nuxt/fonts',
+    'nuxt-auth-utils',
+  ],
   css: [
     'primeicons/primeicons.css',
     '~/assets/css/tailwind.css',
     '~/assets/css/variables.css',
   ],
+  runtimeConfig: {
+    hash: {
+      salt: Number(process.env.HASH_SALT || 8),
+    },
+  },
+
   // Modules Configs
   primevue: {
     options: {
