@@ -5,4 +5,7 @@
     "./app/assets/css/tailwind.css",
     "node_modules/primeicons/primeicons.css"
   ],
+  "cSpell.words": [
+    "libsql"
+  ],
 }
