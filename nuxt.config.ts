@@ -1,11 +1,27 @@
 import path from 'path';
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      title: 'Agendamento',
+      htmlAttrs: { lang: 'pt-br' },
+      meta: [
+        { name: 'description', content: 'Agendamento' },
+        { name: 'format-detection', content: 'telephone=no' },
+      ],
+    },
+  },
+  routeRules: {
+    '/': { static: true },
+  },
   modules: [
     '@primevue/nuxt-module',
     '@nuxtjs/tailwindcss',
     '@nuxt/fonts',
     'nuxt-auth-utils',
+    '@nuxtjs/robots',
   ],
   css: [
     'primeicons/primeicons.css',
@@ -18,6 +34,10 @@ export default defineNuxtConfig({
     },
     session: {
       maxAge: 60 * 60 * 24 * 7, // 1 week
+    },
+    turso: {
+      url: process.env.TURSO_DATABASE_URL!,
+      authToken: process.env.TURSO_AUTH_TOKEN,
     },
   },
 
