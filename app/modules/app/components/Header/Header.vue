@@ -46,11 +46,11 @@ const toggle = (event: MouseEvent) => {
 <template>
   <header class="w-full shadow">
     <nav class="bg-white px-4 py-2.5 lg:px-6">
-      <div class="mx-auto flex max-w-screen-xl items-center justify-center md:justify-between">
+      <div class="mx-auto flex max-w-screen-xl items-center  justify-between">
         <NuxtLink to="/" class="flex items-center">
           <Logo />
         </NuxtLink>
-        <div class="hidden items-center md:flex">
+        <div class="flex items-center">
           <Button
             type="button"
             aria-label="Menu"

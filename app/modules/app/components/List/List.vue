@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <h2 class="text-2xl font-bold">
+  <h2 class="text-center text-2xl font-bold sm:text-left">
     {{ props.name }}
   </h2>
   <ul class="flex flex-wrap gap-4">
