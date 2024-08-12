@@ -1,7 +1,8 @@
 export type Schedule = {
+  id: number;
   date: string;
   name: string;
   number: number;
   shift: string;
-  machine: string;
+  machine: number;
 };
