@@ -13,12 +13,30 @@
 html,
 body,
 #__nuxt {
-    @apply scroll-smooth bg-surface-50 min-h-screen flex flex-col;
-
+    @apply w-full h-full scroll-smooth bg-surface-50;
 }
 
 * {
     @apply font-sans;
     box-sizing: border-box;
 
+}
+
+/* Change scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--p-surface-300);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--p-surface-400);
 }
