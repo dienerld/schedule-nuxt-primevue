@@ -5,9 +5,9 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="flex size-full  min-w-96 flex-col">
+  <div class="flex size-full min-w-96 flex-1 flex-col">
     <slot name="header" class="flex-1" />
-    <div class="mb-2 size-full flex-1 bg-surface-50" :class="{ 'overflow-auto': props.innerScroll }">
+    <div class=" size-full flex-1 bg-surface-50" :class="{ 'overflow-auto': props.innerScroll }">
       <div class="mx-auto size-full max-w-screen-xl p-1 sm:p-4 lg:p-6">
         <slot name="content" />
       </div>

@@ -13,7 +13,8 @@
 html,
 body,
 #__nuxt {
-    @apply w-full h-full scroll-smooth bg-surface-50
+    @apply scroll-smooth bg-surface-50 min-h-screen flex flex-col;
+
 }
 
 * {
