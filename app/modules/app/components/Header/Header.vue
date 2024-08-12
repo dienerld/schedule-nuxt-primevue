@@ -10,15 +10,7 @@ const emit = defineEmits<{
   (e: 'wants-to-profile'): void
 }>()
 
-const firstLetter = computed(() => {
-  let result = ''
-  const [first, last] = props.name.trim().split(' ')
-  if (first) { result = first.charAt(0).toUpperCase() }
-
-  if (last) { result += last.charAt(0).toUpperCase() }
-
-  return result
-})
+const firstLetter = computed(() => props.name.charAt(0))
 
 const menu = ref()
 const items = ref([
