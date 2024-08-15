@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits<{
-  (e: 'wants-to-signout'): void
+  (e: 'logout'): void
   (e: 'wants-to-profile'): void
 }>()
 
@@ -24,7 +24,7 @@ const items = ref([
       {
         label: 'Sair',
         icon: 'pi pi-sign-out',
-        command: () => emit('wants-to-signout')
+        command: () => emit('logout')
       }
     ]
   }
@@ -39,7 +39,7 @@ const toggle = (event: MouseEvent) => {
   <header class="w-full shadow">
     <nav class="bg-white px-4 py-2.5 lg:px-6">
       <div class="mx-auto flex max-w-screen-xl items-center  justify-between">
-        <NuxtLink to="/" class="flex items-center">
+        <NuxtLink to="/app" class="flex items-center">
           <Logo />
         </NuxtLink>
         <div class="flex items-center">
