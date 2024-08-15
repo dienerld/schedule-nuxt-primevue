@@ -5,4 +5,5 @@ export type Schedule = {
   number: number;
   shift: string;
   machine: number;
+  userId: number;
 };

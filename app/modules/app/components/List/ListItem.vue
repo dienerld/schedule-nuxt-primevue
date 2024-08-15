@@ -3,6 +3,7 @@ import type { Schedule } from '~/entities/schedule'
 
 const props = defineProps<{
   value: Schedule
+  'isMine': boolean
 }>()
 
 const emit = defineEmits<{
@@ -20,7 +21,7 @@ const emit = defineEmits<{
     <p>Data: {{ props.value.date }}</p>
     <p>Turno: {{ props.value.shift }}</p>
     <p>Máquina: {{ props.value.machine }}</p>
-    <div class="mt-2 flex flex-1 gap-2">
+    <div v-if="props.isMine" class="mt-2 flex flex-1 gap-2">
       <Button
         label="Editar"
         icon="pi pi-pencil"

@@ -22,6 +22,8 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'nuxt-auth-utils',
     '@nuxtjs/robots',
+    '@nuxt/image',
+    'nuxt-svgo',
   ],
   css: [
     'primeicons/primeicons.css',
@@ -50,6 +52,10 @@ export default defineNuxtConfig({
   },
   fonts: {
     families: [{ name: 'Inter', weights: ['400', '500', '600', '700'] }],
+  },
+  svgo: {
+    autoImportPath: '~/assets/svg/',
+    componentPrefix: 'i',
   },
 
   future: { compatibilityVersion: 4 },
