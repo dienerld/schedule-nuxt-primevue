@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import Home from '~/modules/schedule/screens/Home/Home.vue'
-
 definePageMeta({
   middleware: 'auth',
   layout: 'authenticated'
 })
-
 </script>
 
 <template>
-  <Home />
+  <div>
+    New
+  </div>
 </template>

@@ -16,6 +16,8 @@
     "@nuxtjs/robots": "^4.0.2",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@primevue/themes": "^4.0.4",
+    "@vueuse/core": "^11.0.0",
+    "@vueuse/nuxt": "^11.0.0",
     "autoprefixer": "^10.4.20",
     "drizzle-orm": "^0.33.0",
     "nuxt": "^3.12.4",

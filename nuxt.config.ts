@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxt/image',
     'nuxt-svgo',
+    "@vueuse/nuxt"
   ],
   css: [
     'primeicons/primeicons.css',

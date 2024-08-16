@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Schedule } from '~/entities/schedule'
-import List from '~/modules/app/components/List/List.vue'
-import ListItem from '~/modules/app/components/List/ListItem.vue'
+import List from '~/modules/schedule/components/List/List.vue'
+import ListItem from '~/modules/schedule/components/List/ListItem.vue'
 import { myselfKey } from '~/modules/users/composables/useMySelf/useMySelf'
+import Header from './components/Header/Header.vue'
 
 const schedules: Schedule[] = [
   { id: 1, date: '2022-01-01', userId: 1, name: 'João', shift: 'Manha', machine: 1, number: 1 },
@@ -22,8 +23,6 @@ const visible = ref(false)
 const schedule = ref<Schedule | null>(null)
 const date = ref(new Date())
 const { user } = inject(myselfKey)!
-
-const formatDate = Intl.DateTimeFormat('pt-BR', { dateStyle: 'short' }).format
 
 const schedulesManha = schedules.filter(
   schedule => schedule.shift === 'Manha'
@@ -52,30 +51,7 @@ function cancelDelete() {
 </script>
 
 <template>
-  <header class="mb-4 flex flex-col items-center justify-between sm:mb-2 md:flex-row">
-    <h1 class="mb-4 text-center text-4xl font-bold sm:text-left">
-      Agendamentos
-    </h1>
-
-    <div class="flex items-center gap-2">
-      <!-- btn back -->
-      <Button
-        aria-label="Anterior"
-        outlined
-        icon="pi pi-arrow-left"
-        @click="() => (date = new Date(date.setDate(date.getDate() - 1)))"
-      />
-      <!-- btn today -->
-      <Button aria-label="Data escolhida" text :label="formatDate(date)" disabled />
-      <!-- btn next -->
-      <Button
-        aria-label="Proximo"
-        outlined
-        icon="pi pi-arrow-right"
-        @click="() => (date = new Date(date.setDate(date.getDate() + 1)))"
-      />
-    </div>
-  </header>
+  <Header v-model="date" />
   <section class="flex w-full flex-col gap-4 rounded border bg-surface-50 p-2 shadow sm:p-4 md:flex-row">
     <List v-for="(scheduleShift, key) in [schedulesManha, schedulesTarde]" :key :name="key === 0 ? 'Manha' : 'Tarde'">
       <ListItem

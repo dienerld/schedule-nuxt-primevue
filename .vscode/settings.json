@@ -1,5 +1,6 @@
 {
   "eslint.useFlatConfig": false,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "css.styleSheets": [
     "./app/assets/css/variables.css",
     "./app/assets/css/tailwind.css",

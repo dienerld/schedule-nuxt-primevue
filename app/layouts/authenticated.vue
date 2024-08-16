@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Header from '~/modules/app/components/Header/Header.vue'
-import HeaderLoader from '~/modules/app/components/Header/Loader.vue'
+import Header from '~/modules/schedule/components/Header/Header.vue'
+import HeaderLoader from '~/modules/schedule/components/Header/Loader.vue'
 import { useMySelf } from '~/modules/users/composables/useMySelf/useMySelf'
 
 const router = useRouter()
