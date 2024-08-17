@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Create from '~/modules/schedule/screens/Create/Create.vue'
+
 definePageMeta({
   middleware: 'auth',
   layout: 'authenticated'
@@ -6,7 +8,5 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    New
-  </div>
+  <Create />
 </template>

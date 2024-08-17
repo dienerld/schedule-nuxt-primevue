@@ -1,4 +1,6 @@
 import path from 'path';
+import localePrimVue from './locale/primevue.json';
+import type { PrimeVueLocaleOptions } from 'primevue/config';
 
 export default defineNuxtConfig({
   app: {
@@ -24,7 +26,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxt/image',
     'nuxt-svgo',
-    "@vueuse/nuxt"
+    '@vueuse/nuxt',
   ],
   css: [
     'primeicons/primeicons.css',
@@ -48,6 +50,9 @@ export default defineNuxtConfig({
   primevue: {
     options: {
       unstyled: true,
+      locale: {
+        ...(localePrimVue as PrimeVueLocaleOptions),
+      },
     },
     importPT: { from: path.resolve(__dirname, './app/assets/presets/aura/') },
   },

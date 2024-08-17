@@ -17,6 +17,6 @@ export const machine = sqliteTable('machines', {
 export const schedule = sqliteTable('schedules', {
   id: integer('id').primaryKey(),
   machine: integer('machine').notNull(),
-  day: integer('day', { mode: 'timestamp' }).notNull(),
+  day: integer('day', { mode: 'number' }).notNull(),
   shift: text('shift', { enum: ['morning', 'afternoon'] }).notNull(),
 });

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { formatDate } from '~/utils/format-date'
 import type { Schedule } from '~/entities/schedule'
 import List from '~/modules/schedule/components/List/List.vue'
 import ListItem from '~/modules/schedule/components/List/ListItem.vue'

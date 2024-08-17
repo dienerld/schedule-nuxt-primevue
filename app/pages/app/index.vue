@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Home from '~/modules/schedule/screens/Home/Home.vue'
+import Home from '~/modules/schedule/screens/List/List.vue'
 
 definePageMeta({
   middleware: 'auth',
