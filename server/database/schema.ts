@@ -19,4 +19,5 @@ export const schedule = sqliteTable('schedules', {
   machine: integer('machine').notNull(),
   day: integer('day', { mode: 'number' }).notNull(),
   shift: text('shift', { enum: ['morning', 'afternoon'] }).notNull(),
+  userId: integer('user_id').notNull(),
 });
