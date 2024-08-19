@@ -1,1 +1,0 @@
-ALTER TABLE `schedules` ADD `user_id` integer NOT NULL;

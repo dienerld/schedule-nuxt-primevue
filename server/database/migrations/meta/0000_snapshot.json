@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "b77c321e-8cdf-42ac-9f25-dfa56d6fb3d8",
+  "id": "6164891a-fc3e-4f04-bb8e-ccc9851002e2",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "machines": {
@@ -44,8 +44,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "machine": {
-          "name": "machine",
+        "machine_id": {
+          "name": "machine_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -61,6 +61,13 @@
         "shift": {
           "name": "shift",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -98,6 +105,13 @@
         "apartment": {
           "name": "apartment",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
