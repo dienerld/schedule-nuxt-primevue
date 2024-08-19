@@ -12,6 +12,7 @@ export {
   count,
   between,
   notBetween,
+  isNull,
 } from 'drizzle-orm';
 export const tables = schema;
 export function useDB() {
