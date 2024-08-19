@@ -45,6 +45,7 @@ const data = useVModel(props, 'modelValue', emit)
           v-model="data.date"
           placeholder="Data"
           date-format="dd/mm/yy"
+          :min-date="new Date()"
         />
         <Select
           v-model="data.shift"
