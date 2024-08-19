@@ -46,6 +46,20 @@ const handleCreateSchedule = () => {
       day: data.value.date.getTime(),
       shift: data.value.shift
     }
+  }).then(() => {
+    machines.value = machines.value?.filter(m => m.id !== data.value.machineId)
+    if (data.value.shift) {
+      shifts.value = shifts.value?.map((s) => {
+        if (s.id === data.value.shift) {
+          s.available = s.available - 1
+        }
+        return s
+      })
+    }
+
+    data.value.date = new Date()
+    data.value.shift = ''
+    data.value.machineId = 0
   }).catch((e) => {
     if (e.data) {
       error.value = e.data.message
