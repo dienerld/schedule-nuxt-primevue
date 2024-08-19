@@ -26,7 +26,6 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   (e: 'wants-create-schedule'): void
   (e: 'update:modelValue', value: Date): void
-  (e: 'refresh-date'): void
 }>()
 
 const data = useVModel(props, 'modelValue', emit)
@@ -52,6 +51,7 @@ const data = useVModel(props, 'modelValue', emit)
           :options="props.shifts.value"
           :loading="props.shifts.loading"
           :option-label="op=> `${op.name} - Disponível: ${op.available}`"
+          :disabled="!data.date"
           option-value="id"
           placeholder="Selecione o Turno"
           empty-message="Nenhum Turno Disponível"
@@ -61,6 +61,7 @@ const data = useVModel(props, 'modelValue', emit)
           v-model="data.machineId"
           :loading="props.machines.loading"
           :options="props.machines.value"
+          :disabled="!data.date || !data.shift"
           option-label="name"
           option-value="id"
           placeholder="Selecione a Máquina"
@@ -68,7 +69,12 @@ const data = useVModel(props, 'modelValue', emit)
           class="w-full"
         />
 
-        <Button label="Entrar" type="submit" :loading="props.loading" />
+        <Button
+          label="Entrar"
+          type="submit"
+          :loading="props.loading"
+          :disabled="!data.date || !data.shift || !data.machineId"
+        />
       </form>
     </section>
   </div>
