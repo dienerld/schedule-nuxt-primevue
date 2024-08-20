@@ -1,9 +1,13 @@
+type Shift = 'morning' | 'afternoon';
+
 export type Schedule = {
   id: number;
-  date: string;
-  name: string;
-  number: number;
-  shift: string;
-  machine: number;
-  userId: number;
+  day: number;
+  shift: Shift;
+  machine: string;
+  user: {
+    id: number;
+    name: string;
+    number: number;
+  };
 };
