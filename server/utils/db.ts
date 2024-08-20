@@ -15,6 +15,8 @@ export {
   isNull,
 } from 'drizzle-orm';
 export const tables = schema;
+export type { Machine, Schedule, User } from '../database/schema';
+
 export function useDB() {
   const { turso } = useRuntimeConfig();
 

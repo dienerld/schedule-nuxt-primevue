@@ -1,3 +1,4 @@
+import { InferSelectModel } from 'drizzle-orm';
 import { text, sqliteTable, integer } from 'drizzle-orm/sqlite-core';
 
 export const user = sqliteTable('users', {
@@ -21,3 +22,7 @@ export const schedule = sqliteTable('schedules', {
   shift: text('shift', { enum: ['morning', 'afternoon'] }).notNull(),
   userId: integer('user_id').notNull(),
 });
+
+export type User = InferSelectModel<typeof user>;
+export type Schedule = InferSelectModel<typeof schedule>;
+export type Machine = InferSelectModel<typeof machine>;

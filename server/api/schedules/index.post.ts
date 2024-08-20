@@ -2,8 +2,11 @@ import * as luxon from 'luxon';
 import { between } from 'drizzle-orm';
 import { zh } from 'h3-zod';
 import { z } from 'zod';
+import { authMiddleware } from '~~/server/middlewares/auth.middleware';
 
 export default eventHandler(async (event) => {
+  await authMiddleware(event);
+
   const db = useDB();
   const { user } = await getUserSession(event);
   const body = await zh.useValidatedBody(
@@ -29,7 +32,14 @@ export default eventHandler(async (event) => {
   });
   const day = {
     start: luxonDate.toJSDate().getTime(),
-    end: luxonDate.plus({ days: 1 }).toJSDate().getTime(),
+    end: luxonDate
+      .set({
+        hour: 23,
+        minute: 59,
+        second: 59,
+      })
+      .toJSDate()
+      .getTime(),
   };
   const schedule = await db
     .select()
