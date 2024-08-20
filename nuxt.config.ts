@@ -36,6 +36,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     hash: {
       salt: Number(process.env.HASH_SALT || 8),
+      seed: process.env.HASH_SEED!,
     },
     session: {
       maxAge: 60 * 60 * 24 * 7, // 1 week
