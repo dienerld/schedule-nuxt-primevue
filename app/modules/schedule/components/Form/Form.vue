@@ -33,50 +33,48 @@ const data = useVModel(props, 'modelValue', emit)
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center gap-2 p-2 sm:p-4 md:p-6">
-    <section class="flex w-full max-w-sm flex-col items-center gap-4 rounded-lg bg-white px-2 py-4 sm:px-4">
-      <header class="w-full">
-        <h2 class="self-start text-xl font-bold">
-          Novo Agendamento
-        </h2>
-      </header>
-      <form class="flex w-full flex-col gap-2" autocomplete="on" @submit.prevent="emit('wants-create-schedule')">
-        <DatePicker
-          v-model="data.date"
-          placeholder="Data"
-          date-format="dd/mm/yy"
-          :min-date="new Date()"
-        />
-        <Select
-          v-model="data.shift"
-          :options="props.shifts.value"
-          :loading="props.shifts.loading"
-          :option-label="op=> `${op.name} - Disponível: ${op.available}`"
-          :disabled="!data.date"
-          option-value="id"
-          placeholder="Selecione o Turno"
-          empty-message="Nenhum Turno Disponível"
-          class="w-full"
-        />
-        <Select
-          v-model="data.machineId"
-          :loading="props.machines.loading"
-          :options="props.machines.value"
-          :disabled="!data.date || !data.shift"
-          option-label="name"
-          option-value="id"
-          placeholder="Selecione a Máquina"
-          empty-message="Nenhuma Máquina Disponível"
-          class="w-full"
-        />
+  <section class="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 rounded-lg bg-white px-2 py-4 sm:px-4">
+    <header class="w-full">
+      <h2 class="self-start text-xl font-bold">
+        Novo Agendamento
+      </h2>
+    </header>
+    <form class="flex w-full flex-col gap-2" autocomplete="on" @submit.prevent="emit('wants-create-schedule')">
+      <DatePicker
+        v-model="data.date"
+        placeholder="Data"
+        date-format="dd/mm/yy"
+        :min-date="new Date()"
+      />
+      <Select
+        v-model="data.shift"
+        :options="props.shifts.value"
+        :loading="props.shifts.loading"
+        :option-label="op=> `${op.name} - Disponível: ${op.available}`"
+        :disabled="!data.date"
+        option-value="id"
+        placeholder="Selecione o Turno"
+        empty-message="Nenhum Turno Disponível"
+        class="w-full"
+      />
+      <Select
+        v-model="data.machineId"
+        :loading="props.machines.loading"
+        :options="props.machines.value"
+        :disabled="!data.date || !data.shift"
+        option-label="name"
+        option-value="id"
+        placeholder="Selecione a Máquina"
+        empty-message="Nenhuma Máquina Disponível"
+        class="w-full"
+      />
 
-        <Button
-          label="Entrar"
-          type="submit"
-          :loading="props.loading"
-          :disabled="!data.date || !data.shift || !data.machineId"
-        />
-      </form>
-    </section>
-  </div>
+      <Button
+        label="Entrar"
+        type="submit"
+        :loading="props.loading"
+        :disabled="!data.date || !data.shift || !data.machineId"
+      />
+    </form>
+  </section>
 </template>

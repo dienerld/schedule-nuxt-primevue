@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Shift } from '~/entities/shift'
 import Form, { type CreateSchedule } from '~/modules/schedule/components/Form/Form.vue'
+import NearestSchedules from '~/modules/schedule/components/NearestSchedules/NearestSchedules.vue'
 
 const loading = ref(false)
 const error = ref<string | null>(null)
@@ -10,7 +11,7 @@ const data = ref<CreateSchedule>({
   machineId: 0
 })
 
-const { data: shifts, status: statusShift, refresh: refreshShift } = await useFetch<Shift[]>('/api/shifts', {
+const { data: shifts, status: statusShift, refresh: refreshShift } = useFetch<Shift[]>('/api/shifts', {
   query: { data },
   watch: false,
   onRequest({ options }) {
@@ -20,7 +21,7 @@ const { data: shifts, status: statusShift, refresh: refreshShift } = await useFe
   }
 })
 
-const { data: machines, status: statusMachines, refresh: refreshMachines } = await useFetch('/api/machines', {
+const { data: machines, status: statusMachines, refresh: refreshMachines } = useFetch('/api/machines', {
   query: { data },
   immediate: false,
   watch: false,
@@ -36,6 +37,11 @@ const { data: machines, status: statusMachines, refresh: refreshMachines } = awa
     }
   }
 })
+
+const { data: nearestSchedule, status: statusNearest } = useFetch<{
+  older: Schedule | null,
+  newer: Schedule | null
+}>('/api/schedules/nearest')
 
 const handleCreateSchedule = () => {
   loading.value = true
@@ -99,14 +105,23 @@ watch(data.value, () => {
     </template>
 
     <template #content>
-      <Message v-if="error" severity="error">
-        {{ error }}
-      </Message>
+      <div class="flex min-h-10 items-center justify-center">
+        <Message v-if="error" severity="error">
+          {{ error }}
+        </Message>
+      </div>
+      <NearestSchedules
+        :older="nearestSchedule?.older"
+        :newer="nearestSchedule?.newer"
+        :loading="statusNearest === 'pending'"
+      />
+
       <Form
         v-model="data"
         :loading
         :machines="{ value: machines || [], loading: statusMachines === 'pending' }"
         :shifts="{ value: shifts || [], loading: statusShift === 'pending' }"
+        class="mt-4"
         @wants-create-schedule="handleCreateSchedule"
       />
     </template>

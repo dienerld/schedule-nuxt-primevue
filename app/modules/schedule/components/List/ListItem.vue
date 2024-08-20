@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import * as Luxon from 'luxon'
 import type { Schedule } from '~/entities/schedule'
 
 const props = defineProps<{
   value: Schedule
-  'isMine': boolean
+  'isMine': boolean,
 }>()
 
 const emit = defineEmits<{
@@ -11,15 +12,23 @@ const emit = defineEmits<{
   (e: 'wants-to-edit', value: Schedule): void
 }>()
 
+function translateShift(shift: 'morning' | 'afternoon'): string {
+  return shift === 'morning' ? 'Manha' : 'Tarde'
+}
+
+function formatDate(timestamp: number): string {
+  return Luxon.DateTime.fromJSDate(new Date(timestamp)).toFormat('dd/MM/yyyy')
+}
+
 </script>
 
 <template>
   <li class="flex min-w-80 flex-1 flex-col rounded bg-surface-100 p-4">
     <h3 class="p-0 text-xl font-bold">
-      Nome: {{ props.value.number }} - {{ props.value.name }}
+      Nome: {{ props.value.user.number }} - {{ props.value.user.name }}
     </h3>
-    <p>Data: {{ props.value.date }}</p>
-    <p>Turno: {{ props.value.shift }}</p>
+    <p>Data: {{ formatDate(props.value.day) }}</p>
+    <p>Turno: {{ translateShift(props.value.shift) }}</p>
     <p>Máquina: {{ props.value.machine }}</p>
     <div v-if="props.isMine" class="mt-2 flex flex-1 gap-2">
       <Button
