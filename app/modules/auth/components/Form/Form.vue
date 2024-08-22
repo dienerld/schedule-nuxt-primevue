@@ -43,7 +43,7 @@ const handleSignin = () => {
           <InputGroupAddon>
             <i class="pi pi-eye" />
           </InputGroupAddon>
-          <InputText v-model="signinData.password" placeholder="Senha" />
+          <InputText v-model="signinData.password" placeholder="Senha" type="password" />
         </InputGroup>
 
         <Button label="Entrar" type="submit" :loading="props.loading" />
