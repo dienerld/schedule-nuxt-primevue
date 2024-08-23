@@ -38,7 +38,7 @@ const { data: machines, status: statusMachines, refresh: refreshMachines } = use
   }
 })
 
-const { data: nearestSchedule, status: statusNearest } = useFetch<{
+const { data: nearestSchedule, status: statusNearest, refresh: refreshNearest } = useFetch<{
   older: Schedule | null,
   newer: Schedule | null
 }>('/api/schedules/nearest')
@@ -63,6 +63,7 @@ const handleCreateSchedule = () => {
       })
     }
 
+    refreshNearest()
     data.value.date = new Date()
     data.value.shift = ''
     data.value.machineId = 0
