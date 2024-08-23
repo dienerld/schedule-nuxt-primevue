@@ -38,6 +38,7 @@ function formatDate(timestamp: number): string {
         size="small"
         icon-pos="right"
         class="w-full"
+        disabled
         @click="emit('wants-to-edit', props.value)"
       />
       <Button

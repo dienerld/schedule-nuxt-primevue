@@ -1,24 +1,26 @@
 <script setup lang="ts">
 import { formatDate } from '~/utils/format-date'
 import type { Schedule } from '~/entities/schedule'
-import List from '~/modules/schedule/components/List/List.vue'
+import { myselfKey } from '~/modules/users/composables/useMySelf/useMySelf'
 import ListLoader from '~/modules/schedule/components/List/Loader.vue'
 import ListItem from '~/modules/schedule/components/List/ListItem.vue'
-import { myselfKey } from '~/modules/users/composables/useMySelf/useMySelf'
+import List from '~/modules/schedule/components/List/List.vue'
+import { useAdapter } from '~/modules/schedule/composables/useAdapter'
+
 import Header from './components/Header/Header.vue'
 
 type ResponseApi = {
   morning: Schedule[],
   afternoon: Schedule[]
 }
-
+const { adapterDisplayName } = useAdapter()
 const router = useRouter()
 const visible = ref(false)
 const schedule = ref<Schedule | null>(null)
 const date = ref(new Date())
 const { user } = inject(myselfKey)!
 
-const { data: schedules, status } = useFetch<ResponseApi>('/api/schedules', {
+const { data: schedules, status, refresh } = useFetch<ResponseApi>('/api/schedules', {
   query: {
     date
   },
@@ -40,12 +42,21 @@ function onSelfDelete(value: Schedule) {
 
 function applyDelete() {
   visible.value = false
+  $fetch<{success: boolean}>(`/api/schedules/${schedule.value?.id}`, { method: 'DELETE' })
+    .then(() => {
+      refresh()
+      schedule.value = null
+    })
+    .catch(() => {
+      schedule.value = null
+    })
 }
 
 function cancelDelete() {
   visible.value = false
   schedule.value = null
 }
+
 </script>
 
 <template>
@@ -53,7 +64,7 @@ function cancelDelete() {
   <section class="flex w-full flex-col gap-4 rounded border bg-surface-50 p-2 shadow sm:p-4 md:flex-row">
     <template v-if="status === 'pending'">
       <List v-for="key in 2" :key :name="key === 0 ? 'Manha' : 'Tarde'">
-        <ListLoader />
+        <ListLoader :items="3" />
       </List>
     </template>
     <List
@@ -89,7 +100,7 @@ function cancelDelete() {
       <p>
         Deseja excluir o agendamento do dia
         <b>{{ formatDate(new Date(schedule.day)) }}</b>, lavadora <b>{{ schedule.machine }}</b> no turno da
-        <b>{{ schedule.shift }}</b>?
+        <b>{{ adapterDisplayName(schedule.shift) }}</b>?
       </p>
 
       <div class="flex justify-end gap-2">
