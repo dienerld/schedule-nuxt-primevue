@@ -9,4 +9,7 @@
   "cSpell.words": [
     "libsql"
   ],
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
 }
