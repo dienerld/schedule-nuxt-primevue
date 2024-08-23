@@ -70,7 +70,7 @@ npm run dev
 
 | Funcionalidade | Descrição | Status |
 | --- | --- | --- |
-| Reservar lavadora | Reserva uma lavadora para um período de dia específico | 🟢 |
+| Reservar lavadora | Reserva uma lavadora para um período de dia específico | 🟡 |
 | Excluir reserva | Exclui uma reserva de lavadora | 🟢 |
 | Alterar reserva | Exclui uma reserva de lavadora | 🔴 |
 | Visualizar reservas | Visualiza reservas passadas e futuras | 🟢 |
