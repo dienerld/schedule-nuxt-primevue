@@ -2,11 +2,11 @@
 import { formatDate } from '~/utils/format-date'
 import type { Schedule } from '~/entities/schedule'
 import { myselfKey } from '~/modules/users/composables/useMySelf/useMySelf'
-import ListLoader from '~/modules/schedule/components/List/Loader.vue'
-import ListItem from '~/modules/schedule/components/List/ListItem.vue'
-import List from '~/modules/schedule/components/List/List.vue'
 import { useAdapter } from '~/modules/schedule/composables/useAdapter'
 
+import ListItem from './components/List/ListItem.vue'
+import List from './components/List/List.vue'
+import ListLoader from './components/List/Loader.vue'
 import Header from './components/Header/Header.vue'
 
 type ResponseApi = {
