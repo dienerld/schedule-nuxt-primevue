@@ -21,6 +21,8 @@ export const schedule = sqliteTable('schedules', {
   day: integer('day', { mode: 'number' }).notNull(),
   shift: text('shift', { enum: ['morning', 'afternoon'] }).notNull(),
   userId: integer('user_id').notNull(),
+  createdAt: integer('created_at').notNull().default(Date.now()),
+  updatedAt: integer('updated_at').notNull().default(Date.now()),
 });
 
 export type User = InferSelectModel<typeof user>;
