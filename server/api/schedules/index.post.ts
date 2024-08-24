@@ -75,6 +75,10 @@ export default eventHandler(async (event) => {
       message: 'Você possui agendamentos próximos, não é possível agendar.',
     });
   }
+  body.day =
+    body.shift === 'morning'
+      ? useLuxon(body.day).start.set({ hour: 8 }).toMillis()
+      : useLuxon(body.day).start.set({ hour: 14 }).toMillis();
 
   const scheduleSaved = await db
     .insert(tables.schedule)
