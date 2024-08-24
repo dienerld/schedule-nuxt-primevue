@@ -34,6 +34,11 @@ export default defineNuxtConfig({
     '~/assets/css/variables.css',
   ],
   runtimeConfig: {
+    app: {
+      schedules: {
+        cooldownInDays: 4,
+      },
+    },
     hash: {
       salt: Number(process.env.HASH_SALT || 8),
       seed: process.env.HASH_SEED!,
