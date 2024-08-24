@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { MenuItem } from 'primevue/menuitem'
+
 const props = withDefaults(defineProps<{
   name: string
 }>(), {
@@ -13,13 +15,14 @@ const emit = defineEmits<{
 const firstLetter = computed(() => props.name.charAt(0))
 
 const menu = ref()
-const items = ref([
+const items = ref<MenuItem[]>([
   {
     items: [
       {
         label: 'Perfil',
         icon: 'pi pi-user',
-        command: () => emit('wants-to-profile')
+        command: () => emit('wants-to-profile'),
+        disabled: true
       },
       {
         label: 'Sair',
