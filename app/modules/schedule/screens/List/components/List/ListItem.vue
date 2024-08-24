@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import * as Luxon from 'luxon'
 import type { Schedule } from '~/entities/schedule'
+
+const currentDate = useLuxon()
 
 const props = defineProps<{
   value: Schedule
@@ -17,7 +18,7 @@ function translateShift(shift: 'morning' | 'afternoon'): string {
 }
 
 function formatDate(timestamp: number): string {
-  return Luxon.DateTime.fromJSDate(new Date(timestamp)).toFormat('dd/MM/yyyy')
+  return useLuxon(timestamp).toFormat('dd/MM/yyyy')
 }
 
 </script>
@@ -38,7 +39,7 @@ function formatDate(timestamp: number): string {
         size="small"
         icon-pos="right"
         class="w-full"
-        disabled
+        :disabled="currentDate.toMillis() > props.value.day || true"
         @click="emit('wants-to-edit', props.value)"
       />
       <Button
@@ -48,6 +49,7 @@ function formatDate(timestamp: number): string {
         size="small"
         icon-pos="right"
         class="w-full"
+        :disabled="currentDate.toMillis() > props.value.day"
         @click="emit('self-delete', props.value)"
       />
     </div>
