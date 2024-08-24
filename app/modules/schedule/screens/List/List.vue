@@ -13,11 +13,13 @@ type ResponseApi = {
   morning: Schedule[],
   afternoon: Schedule[]
 }
+
 const { adapterDisplayName } = useAdapter()
 const router = useRouter()
 const visible = ref(false)
 const schedule = ref<Schedule | null>(null)
-const date = ref(new Date())
+const routeDate = useRouteQuery('date', Date.now(), { transform: Number })
+const date = ref(new Date(routeDate.value))
 const { user } = inject(myselfKey)!
 
 const { data: schedules, status, refresh } = useFetch<ResponseApi>('/api/schedules', {
@@ -56,6 +58,10 @@ function cancelDelete() {
   visible.value = false
   schedule.value = null
 }
+
+watch(date, () => {
+  routeDate.value = date.value.getTime()
+})
 
 </script>
 
