@@ -29,9 +29,9 @@ importers:
       '@vueuse/core':
         specifier: ^11.0.0
         version: 11.0.1(vue@3.4.38(typescript@5.5.4))
-      '@vueuse/nuxt':
-        specifier: ^11.0.0
-        version: 11.0.1(magicast@0.3.4)(nuxt@3.13.0(@libsql/client@0.9.0)(@parcel/watcher@2.4.1)(@types/node@22.5.0)(drizzle-orm@0.33.0(@libsql/client@0.9.0))(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.21.0)(terser@5.31.6)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)(terser@5.31.6)))(rollup@4.21.0)(vue@3.4.38(typescript@5.5.4))
+      '@vueuse/router':
+        specifier: ^11.0.1
+        version: 11.0.1(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.41)
@@ -81,6 +81,9 @@ importers:
       '@types/luxon':
         specifier: ^3.4.2
         version: 3.4.2
+      '@vueuse/nuxt':
+        specifier: ^11.0.1
+        version: 11.0.1(magicast@0.3.4)(nuxt@3.13.0(@libsql/client@0.9.0)(@parcel/watcher@2.4.1)(@types/node@22.5.0)(drizzle-orm@0.33.0(@libsql/client@0.9.0))(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.21.0)(terser@5.31.6)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)(terser@5.31.6)))(rollup@4.21.0)(vue@3.4.38(typescript@5.5.4))
       drizzle-kit:
         specifier: ^0.24.0
         version: 0.24.1
@@ -1787,6 +1790,11 @@ packages:
     resolution: {integrity: sha512-2utGiRItdFV6/ED39YMyVl/mWFg/Hfx21sVTpo/uv+ZVwg38bLP79Ziqy21WXow18t1E9NEOirU9KhB655ERug==}
     peerDependencies:
       nuxt: ^3.0.0
+
+  '@vueuse/router@11.0.1':
+    resolution: {integrity: sha512-uMux1bGq9bkPbPuxUKT9PY2eTNbDCsWgbUxoTY53q502LCPLFGnYRYVPICOL5AcUZk6SfyAp3S2w4eJEWPux0w==}
+    peerDependencies:
+      vue-router: '>=4.0.0-rc.1'
 
   '@vueuse/shared@11.0.1':
     resolution: {integrity: sha512-eAPf5CQB3HR0S76HqrhjBqFYstZfiHWZq8xF9EQmobGBkrhPfErJEhr8aMNQMqd6MkENIx2pblIEfJGlHpClug==}
@@ -3650,12 +3658,10 @@ packages:
 
   libsql@0.3.19:
     resolution: {integrity: sha512-Aj5cQ5uk/6fHdmeW0TiXK42FqUlwx7ytmMLPSaUQPin5HKKKuUPD62MAbN4OEweGBBI7q1BekoEN4gPUEL6MZA==}
-    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   libsql@0.4.1:
     resolution: {integrity: sha512-qZlR9Yu1zMBeLChzkE/cKfoKV3Esp9cn9Vx5Zirn4AVhDWPcjYhKwbtJcMuHehgk3mH+fJr9qW+3vesBWbQpBg==}
-    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@2.1.0:
@@ -7331,6 +7337,15 @@ snapshots:
       - magicast
       - rollup
       - supports-color
+      - vue
+
+  '@vueuse/router@11.0.1(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4))':
+    dependencies:
+      '@vueuse/shared': 11.0.1(vue@3.4.38(typescript@5.5.4))
+      vue-demi: 0.14.10(vue@3.4.38(typescript@5.5.4))
+      vue-router: 4.4.3(vue@3.4.38(typescript@5.5.4))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
       - vue
 
   '@vueuse/shared@11.0.1(vue@3.4.38(typescript@5.5.4))':
