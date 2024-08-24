@@ -1,15 +1,11 @@
 import { between, count } from 'drizzle-orm';
-import * as Luxon from 'luxon';
+import { z, zh } from 'h3-zod';
 type Shift = 'morning' | 'afternoon';
 
 const shifts: Record<Shift, { name: string; available: number }> = {
   morning: { name: 'Manhã', available: 0 },
   afternoon: { name: 'Tarde', available: 0 },
 };
-
-// Define luxon timezone
-Luxon.Settings.defaultLocale = 'pt-BR';
-Luxon.Settings.defaultZone = 'America/Sao_Paulo';
 
 export default eventHandler(
   async (
@@ -22,16 +18,13 @@ export default eventHandler(
     }>
   > => {
     const db = useDB();
-    const { date: dateTimestamp } = getQuery(event);
-    const jsDate = new Date(Number(dateTimestamp?.toString()));
+    const { date: dateTimestamp } = await zh.useValidatedQuery(
+      event,
+      z.object({ date: z.coerce.number() }),
+    );
 
-    const startDay = Luxon.DateTime.fromJSDate(jsDate).set({
-      hour: 0,
-      minute: 0,
-      second: 0,
-      millisecond: 0,
-    });
-    const endDay = startDay.plus({ days: 1 });
+    const luxonDate = useLuxon(dateTimestamp);
+    luxonDate.end = luxonDate.start.plus({ days: 1 });
 
     const schedules = await db
       .select()
@@ -39,8 +32,8 @@ export default eventHandler(
       .where(
         between(
           tables.schedule.day,
-          startDay.toJSDate().getTime(),
-          endDay.toJSDate().getTime(),
+          luxonDate.start.toMillis(),
+          luxonDate.end.toMillis(),
         ),
       );
 
