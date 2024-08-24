@@ -1,4 +1,6 @@
 import * as luxon from 'luxon';
+luxon.Settings.defaultLocale = 'pt-BR';
+luxon.Settings.defaultZone = 'America/Sao_Paulo';
 
 export function useLuxon(date: Date | number) {
   if (typeof date === 'number') {
