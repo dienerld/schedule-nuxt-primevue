@@ -80,6 +80,18 @@ export default eventHandler(
         });
       }
     }
+    const todayNow = Date.now();
+    const todayEndMorningShift = useLuxon(todayNow).start.set({
+      hour: 10,
+      minute: 0,
+    });
+    if (todayNow > todayEndMorningShift.toMillis()) {
+      const indexShift = shiftToReturn.findIndex(
+        (shift) => shift.id === 'morning',
+      );
+      // set morning shift unavailable
+      shiftToReturn[indexShift].available = 0;
+    }
 
     return shiftToReturn;
   },

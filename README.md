@@ -70,7 +70,7 @@ npm run dev
 
 | Funcionalidade | Descrição | Status |
 | --- | --- | --- |
-| Reservar lavadora | Reserva uma lavadora para um período de dia específico | 🟡 |
+| Reservar lavadora | Reserva uma lavadora para um período de dia específico | 🟢 |
 | Excluir reserva | Exclui uma reserva de lavadora | 🟢 |
 | Alterar reserva | Exclui uma reserva de lavadora | 🔴 |
 | Visualizar reservas | Visualiza reservas passadas e futuras | 🟢 |
@@ -81,7 +81,7 @@ npm run dev
 | Funcionalidade | Descrição | Status |
 | --- | --- | --- |
 | Cadastrar usuário | Cadastro feito via seed para banco de dados | 🟢 |
-| Alterar senha | Altera a senha de um usuário | 🔴 |
+| Editar usuário | Altera a informação de um usuário | 🔴 |
 | Excluir usuário | Exclui um usuário | 🟣 |
 | Visualizar usuários | Visualiza usuários cadastrados |🟣 |
 

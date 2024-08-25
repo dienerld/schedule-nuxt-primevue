@@ -52,6 +52,7 @@ const data = useVModel(props, 'modelValue', emit)
         :loading="props.shifts.loading"
         :option-label="op=> `${op.name} - Disponível: ${op.available}`"
         :disabled="!data.date"
+        :option-disabled="op => op.available === 0"
         option-value="id"
         placeholder="Selecione o Turno"
         empty-message="Nenhum Turno Disponível"
