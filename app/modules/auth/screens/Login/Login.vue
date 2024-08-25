@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Form, { type SigninData } from '~/modules/auth/components/Form/Form.vue'
+import { useSession } from '~/modules/auth/composables/useSession'
 import Header from '~/modules/auth/components/Header/Header.vue'
 
-const router = useRouter()
-const { fetch } = useUserSession()
+const { getSession } = useSession()
 const loading = ref(false)
 const hasError = ref(false)
 
@@ -14,8 +14,7 @@ const handlePhoneLogin = async(data: SigninData) => {
     body: data,
     onResponse: async() => {
       loading.value = false
-      await fetch()
-      router.push('/app')
+      await getSession()
     },
     onResponseError: () => {
       loading.value = false

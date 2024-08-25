@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import Header from '~/modules/schedule/components/Header/Header.vue'
-import HeaderLoader from '~/modules/schedule/components/Header/Loader.vue'
+import Header from '~/modules/auth/components/Header/Header.vue'
+import HeaderLoader from '~/modules/auth/components/Header/Loader.vue'
+import { useSession } from '~/modules/auth/composables/useSession'
 import { useMySelf } from '~/modules/users/composables/useMySelf/useMySelf'
 
 const router = useRouter()
-const { loggedIn, clear } = useUserSession()
+const { loggedIn, logout } = useSession()
 const { loading, user } = useMySelf()
 
 watch(loggedIn, () => {
@@ -19,7 +20,7 @@ watch(loggedIn, () => {
   <MainContent>
     <template #header>
       <HeaderLoader :loading="loading">
-        <Header :name="user?.name" @logout="clear" @wants-to-profile="router.push('/app/profile')" />
+        <Header :name="user?.name" @logout="logout" @wants-to-profile="router.push('/app/profile')" />
       </HeaderLoader>
     </template>
 

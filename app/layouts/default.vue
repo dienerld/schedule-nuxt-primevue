@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { loggedIn } = useUserSession()
+import { useSession } from '~/modules/auth/composables/useSession'
+
+const { loggedIn } = useSession()
 
 watchEffect(() => {
   if (loggedIn.value) {
