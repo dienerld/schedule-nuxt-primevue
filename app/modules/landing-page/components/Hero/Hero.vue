@@ -8,10 +8,13 @@ const emit = defineEmits<{
 <template>
   <section class="flex size-full flex-1 flex-col items-center justify-center">
     <h1 class="mb-4 text-balance text-center text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-      Never Forget Your Laundry Again
+      Facilite Seu Dia com o Agendamento da Lavanderia
     </h1>
-    <p class="mb-8 max-w-3xl text-balance text-center text-xl text-primary-400 lg:text-2xl">
-      Our laundry schedule app helps you stay on top of your laundry with automated reminders, tracking, and optimization.
+    <p class="mb-4 max-w-3xl text-balance text-center text-xl text-primary-400 lg:text-2xl">
+      Nosso aplicativo permite que você reserve máquinas de lavar de maneira simples e rápida, garantindo que você tenha sempre uma máquina disponível quando precisar.
+    </p>
+    <p class="mb-8 max-w-3xl text-balance text-center text-xl text-primary-700 lg:text-2xl">
+      Agende Sua Lavagem Agora e Descomplique Seu Dia a Dia!
     </p>
     <div class="flex flex-col items-center justify-center">
       <Button
