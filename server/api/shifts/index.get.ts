@@ -80,9 +80,12 @@ export default eventHandler(
         });
       }
     }
+
     const todayNow = Date.now();
+
+    // Define agendamentos indisponível após 4h do inicio do turno
     const todayEndMorningShift = useLuxon(todayNow).start.set({
-      hour: 10,
+      hour: 12,
       minute: 0,
     });
     if (todayNow > todayEndMorningShift.toMillis()) {
@@ -90,6 +93,18 @@ export default eventHandler(
         (shift) => shift.id === 'morning',
       );
       // set morning shift unavailable
+      shiftToReturn[indexShift].available = 0;
+    }
+
+    const todayEndAfternoonShift = useLuxon(todayNow).start.set({
+      hour: 18,
+      minute: 0,
+    });
+    if (todayNow > todayEndAfternoonShift.toMillis()) {
+      const indexShift = shiftToReturn.findIndex(
+        (shift) => shift.id === 'afternoon',
+      );
+      // set afternoon shift unavailable
       shiftToReturn[indexShift].available = 0;
     }
 
