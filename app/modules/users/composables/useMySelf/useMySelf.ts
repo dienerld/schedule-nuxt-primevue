@@ -12,7 +12,6 @@ export function useMySelf() {
     name: '',
   });
   const loading = ref(true);
-  provide<MyselfContextProvider>(myselfKey, { user, loading });
 
   onMounted(() => {
     loading.value = true;
@@ -22,8 +21,17 @@ export function useMySelf() {
     loading.value = !session.ready;
   });
 
+  async function update() {
+    const session = useUserSession();
+    await session.fetch();
+    user.value = session.user.value!;
+  }
+
+  provide<MyselfContextProvider>(myselfKey, { user, loading, update });
+
   return {
     user,
     loading,
+    update,
   };
 }
