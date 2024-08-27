@@ -69,7 +69,7 @@ watch(date, () => {
   <Header v-model="date" />
   <section class="flex w-full flex-col gap-4 rounded border bg-surface-50 p-2 shadow sm:p-4 md:flex-row">
     <template v-if="status === 'pending'">
-      <List v-for="key in 2" :key :name="key === 0 ? 'Manha' : 'Tarde'">
+      <List v-for="key in [0,1]" :key :name="key === 0 ? 'Manhã' : 'Tarde'">
         <ListLoader :items="3" />
       </List>
     </template>
@@ -77,7 +77,7 @@ watch(date, () => {
       v-for="(scheduleShift, key) in [schedules?.morning, schedules?.afternoon]"
       v-else
       :key
-      :name="key === 0 ? 'Manha' : 'Tarde'"
+      :name="key === 0 ? 'Manhã' : 'Tarde'"
     >
       <ListItem
         v-for="sch in scheduleShift"
@@ -90,7 +90,7 @@ watch(date, () => {
       <template v-if="Object.keys(schedules || {}).length === 0">
         <p class="mt-2 text-center text-xl font-semibold">
           Nenhum agendamento para o turno da
-          {{ key === 0 ? "manha" : "tarde" }}
+          {{ key === 0 ? "manhã" : "tarde" }}
         </p>
       </template>
     </List>
