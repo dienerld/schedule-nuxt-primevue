@@ -81,7 +81,7 @@ npm run dev
 | Funcionalidade | Descrição | Status |
 | --- | --- | --- |
 | Cadastrar usuário | Cadastro feito via seed para banco de dados | 🟢 |
-| Editar usuário | Altera a informação de um usuário | 🔴 |
+| Editar usuário | Altera a informação de um usuário | 🟢 |
 | Excluir usuário | Exclui um usuário | 🟣 |
 | Visualizar usuários | Visualiza usuários cadastrados |🟣 |
 
