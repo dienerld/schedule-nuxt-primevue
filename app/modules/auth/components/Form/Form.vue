@@ -12,8 +12,8 @@ const props = defineProps<{
 }>()
 
 const signinData = reactive<SigninData>({
-  number: undefined,
-  password: ''
+  number: 101,
+  password: '101'
 })
 
 const handleSignin = () => {
